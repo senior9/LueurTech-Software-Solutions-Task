@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Signup Page</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #0b2237;
+				margin-top: 250px;
+			}
+
+			.container {
+
+				background-color: #243149;
+				padding: 20px;
+				margin: 50px auto;
+				max-width: 500px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+				border-radius: 10px;
+			}
+
+			.container h1 {
+				text-align: center;
+				color: #333333;
+			}
+
+			label {
+				display: block;
+				margin-bottom: 10px;
+				color: rgba(161, 191, 239, 0.5);
+			}
+
+			input[type="text"],
+			input[type="password"] {
+				display: block;
+				padding: 15px;
+				margin-right: 5px;
+				border: none;
+				border-radius: 5px;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+				width: 95%;
+				margin-bottom: 30px;
+			}
+
+			input[type="submit"] {
+				background-color: #3c94c1;
+				color: aliceblue;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				font-size: 16px;
+				font-weight: bold;
+			}
+
+			input[type="submit"]:hover {
+				background-color: #40baf2;
+			}
+
+			.error {
+				background-color: #9d0000;
+				color: #fefdfa;
+				padding: 15px 20px;
+				border-radius: 5px;
+				margin-bottom: 20px;
+				font-size: 16px;
+				text-align: center;
+			}
+
+			/* Media queries */
+
+			/* For tablets */
+			@media only screen and (max-width: 768px) {
+				.container {
+					max-width: 100%;
+				}
+			}
+
+			/* For mobile phones */
+			@media only screen and (max-width: 480px) {
+				body {
+					margin-top: 50px;
+				}
+
+				.container {
+					margin: 20px auto;
+					padding: 10px;
+				}
+
+				label {
+					font-size: 14px;
+				}
+
+				input[type="text"],
+				input[type="password"] {
+					font-size: 14px;
+				}
+
+				input[type="submit"] {
+					font-size: 14px;
+					padding: 8px 16px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- Login Form Container  -->
+		<div class="container">
+			<h1 style="color: aliceblue;">Signup</h1>
+			<h4 style="color:rgb(153, 173, 193); text-align: center;">Do not share your login information with anyone
+			</h4>
+			<!-- Form -->
+			<form action="#" method="post" onsubmit="return validateForm()">
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username">
+
+				<label for="password">Password:</label>
+				<input type="password" id="password" name="password">
+
+				<label for="confirm_password">Confirm Password:</label>
+				<input type="password" id="confirm_password" name="confirm_password">
+
+				<input type="submit" value="Submit">
+
+			</form>
+		</div>
+
+		<!-- Javascript: function -->
+
+		<script>
+			function validateForm() {
+				var username = document.getElementById("username").value;
+				var password = document.getElementById("password").value;
+				var confirm_password = document.getElementById("confirm_password").value;
+
+				if (username == "" || password == "" || confirm_password == "") {
+					alertMessage("! Please fill in all fields.", "error");
+					return false;
+				}
+
+				if (password.length < 8) {
+					alertMessage("! Password must be at least 8 characters long.", "error");
+					return false;
+				}
+
+				if (password != confirm_password) {
+					alertMessage("! Passwords do not match.", "error");
+					return false;
+				}
+
+				return true;
+			}
+			/* 
+			Alert message function
+			*/
+			function alertMessage(message, className) {
+				var alert = document.createElement("div");
+				alert.classList.add(className);
+				alert.innerHTML = message;
+				var form = document.querySelector("form");
+				form.insertBefore(alert, form.firstChild);
+				setTimeout(function () {
+					alert.remove();
+				}, 1500);
+			}
+		</script>
+	</body>
+
+</html>
